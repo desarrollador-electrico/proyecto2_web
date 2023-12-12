@@ -1,0 +1,59 @@
+﻿@model AriasRomanJonathan_Proyecto2.Operaciones
+
+@{
+    ViewBag.Title = "Información de Operaciones";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<div>
+    <h4>Operación</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Fecha)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Fecha)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DetallesTecnicos)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DetallesTecnicos)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Aviones.NumeroSerie)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Aviones.NumeroSerie)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Tecnicos.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tecnicos.Nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TipoOperacion.Tipo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TipoOperacion.Tipo)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Regresar", "Index")
+</p>

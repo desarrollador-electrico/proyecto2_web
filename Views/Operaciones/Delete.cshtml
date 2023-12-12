@@ -1,0 +1,65 @@
+﻿@model AriasRomanJonathan_Proyecto2.Operaciones
+
+@{
+    ViewBag.Title = "Eliminar Operaciones";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<h3>¿Está seguro que desea eliminar?</h3>
+<div>
+    <h4>Operación</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Fecha)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Fecha)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DetallesTecnicos)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DetallesTecnicos)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Aviones.NumeroSerie)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Aviones.NumeroSerie)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Tecnicos.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tecnicos.Nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TipoOperacion.Tipo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TipoOperacion.Tipo)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Eliminar" class="btn btn-default" /> |
+            @Html.ActionLink("Regresar", "Index")
+        </div>
+    }
+</div>

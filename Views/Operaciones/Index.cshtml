@@ -1,0 +1,63 @@
+﻿@model IEnumerable<AriasRomanJonathan_Proyecto2.Operaciones>
+
+@{
+    ViewBag.Title = "Listado de Operaciones";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<br />
+
+<table class="table" style="text-align: center;">
+    <tr>
+        <th>
+            @Html.DisplayName("Consecutivo")
+        </th>
+       <th>
+    @Html.DisplayName("Fecha de actualización")
+</th>
+        <th>
+            @Html.DisplayName("Descripción del detalle")
+        </th>
+        <th>
+            @Html.DisplayName("Número de serie")
+        </th>
+        <th>
+            @Html.DisplayName("Nombre del técnico")
+        </th>
+        <th>
+            @Html.DisplayName("Tipo de operación")
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ID)
+        </td>
+       <td>
+    @Html.DisplayFor(modelItem => item.Fecha)
+</td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DetallesTecnicos)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Aviones.NumeroSerie)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Tecnicos.Nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TipoOperacion.Tipo)
+        </td>
+        @* <td>
+            @Html.ActionLink("Editar", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Detalles", "Details", new { id=item.ID }) |
+            @Html.ActionLink("Eliminar", "Delete", new { id=item.ID })
+        </td> *@
+    </tr>
+}
+
+</table>

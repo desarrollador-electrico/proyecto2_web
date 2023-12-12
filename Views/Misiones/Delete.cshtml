@@ -1,0 +1,97 @@
+﻿@model AriasRomanJonathan_Proyecto2.Misiones
+
+@{
+    ViewBag.Title = "Eliminar Misiones";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<h3>¿Está seguro que desea eliminar?</h3>
+<div>
+    <h4>Misión</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.NumeroDespegue)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NumeroDespegue)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NombreMision)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NombreMision)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FechaDespegue)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FechaDespegue)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FechaAterrizaje)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FechaAterrizaje)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DetallesMision)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DetallesMision)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NombrePiloto)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NombrePiloto)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Aviones.NumeroSerie)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Aviones.NumeroSerie)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EstadoMision.Estado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EstadoMision.Estado)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Tecnicos.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tecnicos.Nombre)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Eliminar" class="btn btn-default" /> |
+            @Html.ActionLink("Regresar", "Index")
+        </div>
+    }
+</div>

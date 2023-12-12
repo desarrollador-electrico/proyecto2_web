@@ -1,0 +1,115 @@
+﻿@model AriasRomanJonathan_Proyecto2.Aviones
+
+@{
+    ViewBag.Title = "Información de Aviones";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<div>
+    <h4>Avión</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.NumeroSerie)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NumeroSerie)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NombreFantasia)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NombreFantasia)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AnchoAlaAla)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AnchoAlaAla)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Alto)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Alto)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LargoPuntaCola)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LargoPuntaCola)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DistanciaMaxima)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DistanciaMaxima)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FechaIngreso)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FechaIngreso)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CantidadInventario)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CantidadInventario)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EstadoAvion.Estado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EstadoAvion.Estado)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MarcaAvion.NombreMarca)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MarcaAvion.NombreMarca)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ModeloAvion.NombreModelo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ModeloAvion.NombreModelo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Tecnicos.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tecnicos.Nombre)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Regresar", "Index")
+</p>

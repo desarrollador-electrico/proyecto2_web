@@ -1,0 +1,82 @@
+﻿@model IEnumerable<AriasRomanJonathan_Proyecto2.Misiones>
+
+@{
+    ViewBag.Title = "Listado de Misiones";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<p>
+    @Html.ActionLink("Crear nuevo", "Create")
+</p>
+<table class="table" style="text-align: center;">
+    <tr>
+        <th>
+            @Html.DisplayName("Número de Despegue")
+        </th>
+        <th>
+            @Html.DisplayName("Nombre de Misión")
+        </th>
+        <th>
+            @Html.DisplayName("Fecha del Despegue")
+        </th>
+        <th>
+            @Html.DisplayName("Fecha de Aterrizaje")
+        </th>
+        <th>
+            @Html.DisplayName("Detalles de la Misión")
+        </th>
+        <th>
+            @Html.DisplayName("Nombre del Piloto")
+        </th>
+        <th>
+            @Html.DisplayName("# Serie del Avión")
+        </th>
+        <th>
+            @Html.DisplayName("Estado")
+        </th>
+        <th>
+            @Html.DisplayName("Nombre del Técnico")
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.NumeroDespegue)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NombreMision)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FechaDespegue)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FechaAterrizaje)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DetallesMision)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NombrePiloto)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Aviones.NumeroSerie)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EstadoMision.Estado)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Tecnicos.Nombre)
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Detalles", "Details", new { id=item.ID }) |
+            @Html.ActionLink("Eliminar", "Delete", new { id=item.ID })
+        </td>
+    </tr>
+}
+
+</table>
