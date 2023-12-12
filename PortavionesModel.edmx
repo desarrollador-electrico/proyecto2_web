@@ -1,0 +1,708 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="PortavionesDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Aviones">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MarcaID" Type="int" />
+          <Property Name="ModeloID" Type="int" />
+          <Property Name="TecnicoID" Type="int" />
+          <Property Name="NumeroSerie" Type="nvarchar" MaxLength="255" />
+          <Property Name="NombreFantasia" Type="nvarchar" MaxLength="255" />
+          <Property Name="AnchoAlaAla" Type="float" />
+          <Property Name="Alto" Type="float" />
+          <Property Name="LargoPuntaCola" Type="float" />
+          <Property Name="DistanciaMaxima" Type="float" />
+          <Property Name="EstadoID" Type="int" />
+          <Property Name="FechaIngreso" Type="datetime" />
+          <Property Name="CantidadInventario" Type="int" />
+        </EntityType>
+        <EntityType Name="EstadoAvion">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Estado" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="EstadoMision">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Estado" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="MarcaAvion">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NombreMarca" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="Misiones">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NumeroDespegue" Type="nvarchar" MaxLength="255" />
+          <Property Name="NombreMision" Type="nvarchar" MaxLength="255" />
+          <Property Name="FechaDespegue" Type="datetime" />
+          <Property Name="FechaAterrizaje" Type="datetime" />
+          <Property Name="EstadoID" Type="int" />
+          <Property Name="DetallesMision" Type="nvarchar(max)" />
+          <Property Name="AvionID" Type="int" />
+          <Property Name="TecnicoID" Type="int" />
+          <Property Name="NombrePiloto" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="ModeloAvion">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MarcaID" Type="int" />
+          <Property Name="NombreModelo" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="Operaciones">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TipoID" Type="int" />
+          <Property Name="Fecha" Type="datetime" />
+          <Property Name="DetallesTecnicos" Type="nvarchar(max)" />
+          <Property Name="AvionID" Type="int" />
+          <Property Name="TecnicoID" Type="int" />
+        </EntityType>
+        <EntityType Name="Tecnicos">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="TipoOperacion">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Tipo" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK__Aviones__EstadoI__571DF1D5">
+          <End Role="EstadoAvion" Type="Self.EstadoAvion" Multiplicity="0..1" />
+          <End Role="Aviones" Type="Self.Aviones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EstadoAvion">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Aviones">
+              <PropertyRef Name="EstadoID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Aviones__MarcaID__5535A963">
+          <End Role="MarcaAvion" Type="Self.MarcaAvion" Multiplicity="0..1" />
+          <End Role="Aviones" Type="Self.Aviones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MarcaAvion">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Aviones">
+              <PropertyRef Name="MarcaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Aviones__ModeloI__5629CD9C">
+          <End Role="ModeloAvion" Type="Self.ModeloAvion" Multiplicity="0..1" />
+          <End Role="Aviones" Type="Self.Aviones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ModeloAvion">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Aviones">
+              <PropertyRef Name="ModeloID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Aviones__Tecnico__5812160E">
+          <End Role="Tecnicos" Type="Self.Tecnicos" Multiplicity="0..1" />
+          <End Role="Aviones" Type="Self.Aviones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tecnicos">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Aviones">
+              <PropertyRef Name="TecnicoID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Misiones__AvionI__0A9D95DB">
+          <End Role="Aviones" Type="Self.Aviones" Multiplicity="0..1" />
+          <End Role="Misiones" Type="Self.Misiones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Aviones">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Misiones">
+              <PropertyRef Name="AvionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Misiones__Estado__0C85DE4D">
+          <End Role="EstadoMision" Type="Self.EstadoMision" Multiplicity="0..1" />
+          <End Role="Misiones" Type="Self.Misiones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EstadoMision">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Misiones">
+              <PropertyRef Name="EstadoID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Misiones__Tecnic__0B91BA14">
+          <End Role="Tecnicos" Type="Self.Tecnicos" Multiplicity="0..1" />
+          <End Role="Misiones" Type="Self.Misiones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tecnicos">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Misiones">
+              <PropertyRef Name="TecnicoID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ModeloAvi__Marca__4F7CD00D">
+          <End Role="MarcaAvion" Type="Self.MarcaAvion" Multiplicity="0..1" />
+          <End Role="ModeloAvion" Type="Self.ModeloAvion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MarcaAvion">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ModeloAvion">
+              <PropertyRef Name="MarcaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Operacion__Avion__7B5B524B">
+          <End Role="Aviones" Type="Self.Aviones" Multiplicity="0..1" />
+          <End Role="Operaciones" Type="Self.Operaciones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Aviones">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Operaciones">
+              <PropertyRef Name="AvionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Operacion__Tecni__7C4F7684">
+          <End Role="Tecnicos" Type="Self.Tecnicos" Multiplicity="0..1" />
+          <End Role="Operaciones" Type="Self.Operaciones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tecnicos">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Operaciones">
+              <PropertyRef Name="TecnicoID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Operacion__TipoI__7A672E12">
+          <End Role="TipoOperacion" Type="Self.TipoOperacion" Multiplicity="0..1" />
+          <End Role="Operaciones" Type="Self.Operaciones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoOperacion">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Operaciones">
+              <PropertyRef Name="TipoID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="PortavionesDBModelStoreContainer">
+          <EntitySet Name="Aviones" EntityType="Self.Aviones" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EstadoAvion" EntityType="Self.EstadoAvion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EstadoMision" EntityType="Self.EstadoMision" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MarcaAvion" EntityType="Self.MarcaAvion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Misiones" EntityType="Self.Misiones" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ModeloAvion" EntityType="Self.ModeloAvion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Operaciones" EntityType="Self.Operaciones" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tecnicos" EntityType="Self.Tecnicos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TipoOperacion" EntityType="Self.TipoOperacion" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Aviones__EstadoI__571DF1D5" Association="Self.FK__Aviones__EstadoI__571DF1D5">
+            <End Role="EstadoAvion" EntitySet="EstadoAvion" />
+            <End Role="Aviones" EntitySet="Aviones" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Aviones__MarcaID__5535A963" Association="Self.FK__Aviones__MarcaID__5535A963">
+            <End Role="MarcaAvion" EntitySet="MarcaAvion" />
+            <End Role="Aviones" EntitySet="Aviones" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Aviones__ModeloI__5629CD9C" Association="Self.FK__Aviones__ModeloI__5629CD9C">
+            <End Role="ModeloAvion" EntitySet="ModeloAvion" />
+            <End Role="Aviones" EntitySet="Aviones" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Aviones__Tecnico__5812160E" Association="Self.FK__Aviones__Tecnico__5812160E">
+            <End Role="Tecnicos" EntitySet="Tecnicos" />
+            <End Role="Aviones" EntitySet="Aviones" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Misiones__AvionI__0A9D95DB" Association="Self.FK__Misiones__AvionI__0A9D95DB">
+            <End Role="Aviones" EntitySet="Aviones" />
+            <End Role="Misiones" EntitySet="Misiones" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Misiones__Estado__0C85DE4D" Association="Self.FK__Misiones__Estado__0C85DE4D">
+            <End Role="EstadoMision" EntitySet="EstadoMision" />
+            <End Role="Misiones" EntitySet="Misiones" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Misiones__Tecnic__0B91BA14" Association="Self.FK__Misiones__Tecnic__0B91BA14">
+            <End Role="Tecnicos" EntitySet="Tecnicos" />
+            <End Role="Misiones" EntitySet="Misiones" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ModeloAvi__Marca__4F7CD00D" Association="Self.FK__ModeloAvi__Marca__4F7CD00D">
+            <End Role="MarcaAvion" EntitySet="MarcaAvion" />
+            <End Role="ModeloAvion" EntitySet="ModeloAvion" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Operacion__Avion__7B5B524B" Association="Self.FK__Operacion__Avion__7B5B524B">
+            <End Role="Aviones" EntitySet="Aviones" />
+            <End Role="Operaciones" EntitySet="Operaciones" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Operacion__Tecni__7C4F7684" Association="Self.FK__Operacion__Tecni__7C4F7684">
+            <End Role="Tecnicos" EntitySet="Tecnicos" />
+            <End Role="Operaciones" EntitySet="Operaciones" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Operacion__TipoI__7A672E12" Association="Self.FK__Operacion__TipoI__7A672E12">
+            <End Role="TipoOperacion" EntitySet="TipoOperacion" />
+            <End Role="Operaciones" EntitySet="Operaciones" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="PortavionesDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Aviones">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MarcaID" Type="Int32" />
+          <Property Name="ModeloID" Type="Int32" />
+          <Property Name="TecnicoID" Type="Int32" />
+          <Property Name="NumeroSerie" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="NombreFantasia" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="AnchoAlaAla" Type="Double" />
+          <Property Name="Alto" Type="Double" />
+          <Property Name="LargoPuntaCola" Type="Double" />
+          <Property Name="DistanciaMaxima" Type="Double" />
+          <Property Name="EstadoID" Type="Int32" />
+          <Property Name="FechaIngreso" Type="DateTime" Precision="3" />
+          <Property Name="CantidadInventario" Type="Int32" />
+          <NavigationProperty Name="EstadoAvion" Relationship="Self.FK__Aviones__EstadoI__571DF1D5" FromRole="Aviones" ToRole="EstadoAvion" />
+          <NavigationProperty Name="MarcaAvion" Relationship="Self.FK__Aviones__MarcaID__5535A963" FromRole="Aviones" ToRole="MarcaAvion" />
+          <NavigationProperty Name="ModeloAvion" Relationship="Self.FK__Aviones__ModeloI__5629CD9C" FromRole="Aviones" ToRole="ModeloAvion" />
+          <NavigationProperty Name="Tecnicos" Relationship="Self.FK__Aviones__Tecnico__5812160E" FromRole="Aviones" ToRole="Tecnicos" />
+          <NavigationProperty Name="Misiones" Relationship="Self.FK__Misiones__AvionI__0A9D95DB" FromRole="Aviones" ToRole="Misiones" />
+          <NavigationProperty Name="Operaciones" Relationship="Self.FK__Operacion__Avion__7B5B524B" FromRole="Aviones" ToRole="Operaciones" />
+        </EntityType>
+        <EntityType Name="EstadoAvion">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Estado" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Aviones" Relationship="Self.FK__Aviones__EstadoI__571DF1D5" FromRole="EstadoAvion" ToRole="Aviones" />
+        </EntityType>
+        <EntityType Name="EstadoMision">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Estado" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Misiones" Relationship="Self.FK__Misiones__Estado__0C85DE4D" FromRole="EstadoMision" ToRole="Misiones" />
+        </EntityType>
+        <EntityType Name="MarcaAvion">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NombreMarca" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Aviones" Relationship="Self.FK__Aviones__MarcaID__5535A963" FromRole="MarcaAvion" ToRole="Aviones" />
+          <NavigationProperty Name="ModeloAvion" Relationship="Self.FK__ModeloAvi__Marca__4F7CD00D" FromRole="MarcaAvion" ToRole="ModeloAvion" />
+        </EntityType>
+        <EntityType Name="Misiones">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NumeroDespegue" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="NombreMision" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="FechaDespegue" Type="DateTime" Precision="3" />
+          <Property Name="FechaAterrizaje" Type="DateTime" Precision="3" />
+          <Property Name="EstadoID" Type="Int32" />
+          <Property Name="DetallesMision" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="AvionID" Type="Int32" />
+          <Property Name="TecnicoID" Type="Int32" />
+          <Property Name="NombrePiloto" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Aviones" Relationship="Self.FK__Misiones__AvionI__0A9D95DB" FromRole="Misiones" ToRole="Aviones" />
+          <NavigationProperty Name="EstadoMision" Relationship="Self.FK__Misiones__Estado__0C85DE4D" FromRole="Misiones" ToRole="EstadoMision" />
+          <NavigationProperty Name="Tecnicos" Relationship="Self.FK__Misiones__Tecnic__0B91BA14" FromRole="Misiones" ToRole="Tecnicos" />
+        </EntityType>
+        <EntityType Name="ModeloAvion">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MarcaID" Type="Int32" />
+          <Property Name="NombreModelo" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Aviones" Relationship="Self.FK__Aviones__ModeloI__5629CD9C" FromRole="ModeloAvion" ToRole="Aviones" />
+          <NavigationProperty Name="MarcaAvion" Relationship="Self.FK__ModeloAvi__Marca__4F7CD00D" FromRole="ModeloAvion" ToRole="MarcaAvion" />
+        </EntityType>
+        <EntityType Name="Operaciones">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TipoID" Type="Int32" />
+          <Property Name="Fecha" Type="DateTime" Precision="3" />
+          <Property Name="DetallesTecnicos" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="AvionID" Type="Int32" />
+          <Property Name="TecnicoID" Type="Int32" />
+          <NavigationProperty Name="Aviones" Relationship="Self.FK__Operacion__Avion__7B5B524B" FromRole="Operaciones" ToRole="Aviones" />
+          <NavigationProperty Name="Tecnicos" Relationship="Self.FK__Operacion__Tecni__7C4F7684" FromRole="Operaciones" ToRole="Tecnicos" />
+          <NavigationProperty Name="TipoOperacion" Relationship="Self.FK__Operacion__TipoI__7A672E12" FromRole="Operaciones" ToRole="TipoOperacion" />
+        </EntityType>
+        <EntityType Name="Tecnicos">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Aviones" Relationship="Self.FK__Aviones__Tecnico__5812160E" FromRole="Tecnicos" ToRole="Aviones" />
+          <NavigationProperty Name="Misiones" Relationship="Self.FK__Misiones__Tecnic__0B91BA14" FromRole="Tecnicos" ToRole="Misiones" />
+          <NavigationProperty Name="Operaciones" Relationship="Self.FK__Operacion__Tecni__7C4F7684" FromRole="Tecnicos" ToRole="Operaciones" />
+        </EntityType>
+        <EntityType Name="TipoOperacion">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Tipo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Operaciones" Relationship="Self.FK__Operacion__TipoI__7A672E12" FromRole="TipoOperacion" ToRole="Operaciones" />
+        </EntityType>
+        <Association Name="FK__Aviones__EstadoI__571DF1D5">
+          <End Role="EstadoAvion" Type="Self.EstadoAvion" Multiplicity="0..1" />
+          <End Role="Aviones" Type="Self.Aviones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EstadoAvion">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Aviones">
+              <PropertyRef Name="EstadoID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Aviones__MarcaID__5535A963">
+          <End Role="MarcaAvion" Type="Self.MarcaAvion" Multiplicity="0..1" />
+          <End Role="Aviones" Type="Self.Aviones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MarcaAvion">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Aviones">
+              <PropertyRef Name="MarcaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Aviones__ModeloI__5629CD9C">
+          <End Role="ModeloAvion" Type="Self.ModeloAvion" Multiplicity="0..1" />
+          <End Role="Aviones" Type="Self.Aviones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ModeloAvion">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Aviones">
+              <PropertyRef Name="ModeloID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Aviones__Tecnico__5812160E">
+          <End Role="Tecnicos" Type="Self.Tecnicos" Multiplicity="0..1" />
+          <End Role="Aviones" Type="Self.Aviones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tecnicos">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Aviones">
+              <PropertyRef Name="TecnicoID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Misiones__AvionI__0A9D95DB">
+          <End Role="Aviones" Type="Self.Aviones" Multiplicity="0..1" />
+          <End Role="Misiones" Type="Self.Misiones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Aviones">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Misiones">
+              <PropertyRef Name="AvionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Operacion__Avion__7B5B524B">
+          <End Role="Aviones" Type="Self.Aviones" Multiplicity="0..1" />
+          <End Role="Operaciones" Type="Self.Operaciones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Aviones">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Operaciones">
+              <PropertyRef Name="AvionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Misiones__Estado__0C85DE4D">
+          <End Role="EstadoMision" Type="Self.EstadoMision" Multiplicity="0..1" />
+          <End Role="Misiones" Type="Self.Misiones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EstadoMision">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Misiones">
+              <PropertyRef Name="EstadoID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ModeloAvi__Marca__4F7CD00D">
+          <End Role="MarcaAvion" Type="Self.MarcaAvion" Multiplicity="0..1" />
+          <End Role="ModeloAvion" Type="Self.ModeloAvion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MarcaAvion">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ModeloAvion">
+              <PropertyRef Name="MarcaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Misiones__Tecnic__0B91BA14">
+          <End Role="Tecnicos" Type="Self.Tecnicos" Multiplicity="0..1" />
+          <End Role="Misiones" Type="Self.Misiones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tecnicos">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Misiones">
+              <PropertyRef Name="TecnicoID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Operacion__Tecni__7C4F7684">
+          <End Role="Tecnicos" Type="Self.Tecnicos" Multiplicity="0..1" />
+          <End Role="Operaciones" Type="Self.Operaciones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tecnicos">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Operaciones">
+              <PropertyRef Name="TecnicoID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Operacion__TipoI__7A672E12">
+          <End Role="TipoOperacion" Type="Self.TipoOperacion" Multiplicity="0..1" />
+          <End Role="Operaciones" Type="Self.Operaciones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoOperacion">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Operaciones">
+              <PropertyRef Name="TipoID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="PortavionesDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Aviones" EntityType="Self.Aviones" />
+          <EntitySet Name="EstadoAvion" EntityType="Self.EstadoAvion" />
+          <EntitySet Name="EstadoMision" EntityType="Self.EstadoMision" />
+          <EntitySet Name="MarcaAvion" EntityType="Self.MarcaAvion" />
+          <EntitySet Name="Misiones" EntityType="Self.Misiones" />
+          <EntitySet Name="ModeloAvion" EntityType="Self.ModeloAvion" />
+          <EntitySet Name="Operaciones" EntityType="Self.Operaciones" />
+          <EntitySet Name="Tecnicos" EntityType="Self.Tecnicos" />
+          <EntitySet Name="TipoOperacion" EntityType="Self.TipoOperacion" />
+          <AssociationSet Name="FK__Aviones__EstadoI__571DF1D5" Association="Self.FK__Aviones__EstadoI__571DF1D5">
+            <End Role="EstadoAvion" EntitySet="EstadoAvion" />
+            <End Role="Aviones" EntitySet="Aviones" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Aviones__MarcaID__5535A963" Association="Self.FK__Aviones__MarcaID__5535A963">
+            <End Role="MarcaAvion" EntitySet="MarcaAvion" />
+            <End Role="Aviones" EntitySet="Aviones" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Aviones__ModeloI__5629CD9C" Association="Self.FK__Aviones__ModeloI__5629CD9C">
+            <End Role="ModeloAvion" EntitySet="ModeloAvion" />
+            <End Role="Aviones" EntitySet="Aviones" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Aviones__Tecnico__5812160E" Association="Self.FK__Aviones__Tecnico__5812160E">
+            <End Role="Tecnicos" EntitySet="Tecnicos" />
+            <End Role="Aviones" EntitySet="Aviones" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Misiones__AvionI__0A9D95DB" Association="Self.FK__Misiones__AvionI__0A9D95DB">
+            <End Role="Aviones" EntitySet="Aviones" />
+            <End Role="Misiones" EntitySet="Misiones" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Operacion__Avion__7B5B524B" Association="Self.FK__Operacion__Avion__7B5B524B">
+            <End Role="Aviones" EntitySet="Aviones" />
+            <End Role="Operaciones" EntitySet="Operaciones" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Misiones__Estado__0C85DE4D" Association="Self.FK__Misiones__Estado__0C85DE4D">
+            <End Role="EstadoMision" EntitySet="EstadoMision" />
+            <End Role="Misiones" EntitySet="Misiones" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ModeloAvi__Marca__4F7CD00D" Association="Self.FK__ModeloAvi__Marca__4F7CD00D">
+            <End Role="MarcaAvion" EntitySet="MarcaAvion" />
+            <End Role="ModeloAvion" EntitySet="ModeloAvion" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Misiones__Tecnic__0B91BA14" Association="Self.FK__Misiones__Tecnic__0B91BA14">
+            <End Role="Tecnicos" EntitySet="Tecnicos" />
+            <End Role="Misiones" EntitySet="Misiones" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Operacion__Tecni__7C4F7684" Association="Self.FK__Operacion__Tecni__7C4F7684">
+            <End Role="Tecnicos" EntitySet="Tecnicos" />
+            <End Role="Operaciones" EntitySet="Operaciones" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Operacion__TipoI__7A672E12" Association="Self.FK__Operacion__TipoI__7A672E12">
+            <End Role="TipoOperacion" EntitySet="TipoOperacion" />
+            <End Role="Operaciones" EntitySet="Operaciones" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="PortavionesDBModelStoreContainer" CdmEntityContainer="PortavionesDBEntities">
+          <EntitySetMapping Name="Aviones">
+            <EntityTypeMapping TypeName="PortavionesDBModel.Aviones">
+              <MappingFragment StoreEntitySet="Aviones">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="MarcaID" ColumnName="MarcaID" />
+                <ScalarProperty Name="ModeloID" ColumnName="ModeloID" />
+                <ScalarProperty Name="TecnicoID" ColumnName="TecnicoID" />
+                <ScalarProperty Name="NumeroSerie" ColumnName="NumeroSerie" />
+                <ScalarProperty Name="NombreFantasia" ColumnName="NombreFantasia" />
+                <ScalarProperty Name="AnchoAlaAla" ColumnName="AnchoAlaAla" />
+                <ScalarProperty Name="Alto" ColumnName="Alto" />
+                <ScalarProperty Name="LargoPuntaCola" ColumnName="LargoPuntaCola" />
+                <ScalarProperty Name="DistanciaMaxima" ColumnName="DistanciaMaxima" />
+                <ScalarProperty Name="EstadoID" ColumnName="EstadoID" />
+                <ScalarProperty Name="FechaIngreso" ColumnName="FechaIngreso" />
+                <ScalarProperty Name="CantidadInventario" ColumnName="CantidadInventario" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EstadoAvion">
+            <EntityTypeMapping TypeName="PortavionesDBModel.EstadoAvion">
+              <MappingFragment StoreEntitySet="EstadoAvion">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EstadoMision">
+            <EntityTypeMapping TypeName="PortavionesDBModel.EstadoMision">
+              <MappingFragment StoreEntitySet="EstadoMision">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MarcaAvion">
+            <EntityTypeMapping TypeName="PortavionesDBModel.MarcaAvion">
+              <MappingFragment StoreEntitySet="MarcaAvion">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="NombreMarca" ColumnName="NombreMarca" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Misiones">
+            <EntityTypeMapping TypeName="PortavionesDBModel.Misiones">
+              <MappingFragment StoreEntitySet="Misiones">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="NumeroDespegue" ColumnName="NumeroDespegue" />
+                <ScalarProperty Name="NombreMision" ColumnName="NombreMision" />
+                <ScalarProperty Name="FechaDespegue" ColumnName="FechaDespegue" />
+                <ScalarProperty Name="FechaAterrizaje" ColumnName="FechaAterrizaje" />
+                <ScalarProperty Name="EstadoID" ColumnName="EstadoID" />
+                <ScalarProperty Name="DetallesMision" ColumnName="DetallesMision" />
+                <ScalarProperty Name="AvionID" ColumnName="AvionID" />
+                <ScalarProperty Name="TecnicoID" ColumnName="TecnicoID" />
+                <ScalarProperty Name="NombrePiloto" ColumnName="NombrePiloto" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ModeloAvion">
+            <EntityTypeMapping TypeName="PortavionesDBModel.ModeloAvion">
+              <MappingFragment StoreEntitySet="ModeloAvion">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="MarcaID" ColumnName="MarcaID" />
+                <ScalarProperty Name="NombreModelo" ColumnName="NombreModelo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Operaciones">
+            <EntityTypeMapping TypeName="PortavionesDBModel.Operaciones">
+              <MappingFragment StoreEntitySet="Operaciones">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="TipoID" ColumnName="TipoID" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="DetallesTecnicos" ColumnName="DetallesTecnicos" />
+                <ScalarProperty Name="AvionID" ColumnName="AvionID" />
+                <ScalarProperty Name="TecnicoID" ColumnName="TecnicoID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tecnicos">
+            <EntityTypeMapping TypeName="PortavionesDBModel.Tecnicos">
+              <MappingFragment StoreEntitySet="Tecnicos">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TipoOperacion">
+            <EntityTypeMapping TypeName="PortavionesDBModel.TipoOperacion">
+              <MappingFragment StoreEntitySet="TipoOperacion">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Tipo" ColumnName="Tipo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
